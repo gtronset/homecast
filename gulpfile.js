@@ -1,22 +1,11 @@
 var gulp = require('gulp');
-var inject = require('gulp-inject');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var series = require('stream-series');
 var sass = require('gulp-sass');
-var gulpCopy = require('gulp-copy');
-var LessAutoprefix = require('less-plugin-autoprefix');
 var rename = require("gulp-rename");
 var connect = require('gulp-connect');
 
-var autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
-
 gulp.task('concatJS', function () {
     var jsArray = [
-        './node_modules/jquery/dist/jquery.min.js',
-        './node_modules/moment/min/moment.min.js',
-        './node_modules/lodash/lodash.min.js',
-        //'./node_modules/weather.js/dist/weather.min.js',
         './assets/js/weather.js',
         './assets/js/variables.js',
         './assets/js/backgrounds.js',
@@ -24,8 +13,8 @@ gulp.task('concatJS', function () {
         './assets/js/script.js'
     ].concat();
 
-    gulp.src(jsArray) // path to your files
-        .pipe(concat('scripts.js'))  // concat and name it "scripts.js"
+    gulp.src(jsArray)
+        .pipe(concat('scripts.js'))
         .pipe(gulp.dest('./public/js'));
 });
 

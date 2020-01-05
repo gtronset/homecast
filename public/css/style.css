@@ -147,7 +147,12 @@ body {
   text-align: right;
   -webkit-transition: opacity 1s; }
   .content .weather {
-    font: 300 20px/1 'Roboto';
+    font: 300 20px/2rem 'Roboto';
     text-transform: capitalize; }
   .content .image-description {
-    font: 300 20px/1 'Roboto'; }
+    font: 300 20px/1 'Roboto';
+    opacity: 1;
+    transition: opacity 1s; }
+
+.hidden {
+  opacity: 0 !important; }
