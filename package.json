@@ -1,9 +1,12 @@
 {
   "name": "homecast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Home pages inspired by the Google Cromecast home page.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "webpack-dev-server --mode development --hot",
+    "build": "webpack --mode production"
+  },
   "author": "Gavin Tronset",
   "license": "ISC",
   "repository": {
@@ -12,14 +15,21 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-connect": "^5.7.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.0.0",
-    "gulp-uglify": "^1.5.4",
-    "gulp-watch": "^4.3.9",
-    "run-sequence": "^1.2.2",
-    "stream-series": "^0.1.1"
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "autoprefixer": "^9.7.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.1",
+    "cssnano": "^4.1.10",
+    "fibers": "^4.0.2",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.24.2",
+    "sass-loader": "^8.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   }
 }
