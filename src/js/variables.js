@@ -1,7 +1,7 @@
 const variables = {
-    weather_api_key: 'b148c2be8cc81a234345e3f64f5dd14b',
-    cycle_duration: 30000,
-    default_city: 'Tacoma'
+    weather_api_key: process.env.WEATHER_API_KEY,
+    cycle_duration: process.env.CYCLE_DURATION,
+    default_city: process.env.DEFAULT_CITY
 };
 
 export default variables;

@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -76,4 +77,14 @@ module.exports = {
             filename: "styles.css"
         })
     ]
+}
+
+if(process.env.NODE_ENV === 'distribution'){
+    module.exports.mode = 'production';
+    module.exports.plugins.push(new Dotenv({
+        path: './.env.example',
+        safe: true
+    }));
+} else {
+    module.exports.plugins.push(new Dotenv());
 }

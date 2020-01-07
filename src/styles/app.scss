@@ -13,9 +13,6 @@ body {
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
 
   background-blend-mode: darken;
   transition: 3s ease-in-out;
@@ -54,7 +51,7 @@ body {
   z-index: 2;
   right: 0;
   text-align: right;
-  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
 
   .weather {
     font: 300 20px/2rem 'Roboto';
