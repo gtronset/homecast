@@ -33,7 +33,7 @@ function displayWeather(){
         weatherSelector.querySelector('.temp').innerHTML = temp;
 
         if(iconSelector.className.match(iconRegex)){
-            iconSelector.className = iconSelector.className.replace(iconRegex, '')
+            iconSelector.className = iconSelector.className.replace(iconRegex, '');
         }
         iconSelector.classList.add(icon.iconClass);
 
@@ -47,7 +47,7 @@ function displayWeather(){
 }
 
 function backgroundImage(){
-    var src = bgPluck();
+    var src = window.bgPluck();
 
     var img = new Image();
     img.onload = function(){
@@ -61,7 +61,7 @@ function backgroundImage(){
         document.querySelector('body').style.backgroundImage = 'url('+src.url+')';
 
         var imgAuthor = '-';
-        if(src.hasOwnProperty('author')) {
+        if(_hasProperty(src, 'author')) {
             imgAuthor = src.author;
         }
         var description = document.getElementById('image-description');
@@ -122,18 +122,18 @@ function getIcon(iconObj){
         iconCode = 'i'+iconObj.code,
         res = {};
 
-    if(Icons.hasOwnProperty(iconID)){
+    if(_hasProperty(Icons, iconID)){
         res = Icons[iconID];
-    } else if (Icons.hasOwnProperty(iconCode)) {
+    } else if (_hasProperty(Icons,iconCode)) {
         var iconCat = Icons[iconCode];
 
-        if(iconCat.hasOwnProperty('parentCode')){
+        if(_hasProperty(iconCat, 'parentCode')){
             iconCat = Icons[iconCat.parentCode];
         }
 
-        if (iconCat.hasOwnProperty(iconID)) {
+        if (_hasProperty(iconCat, iconID)) {
             var iconIDCat = iconCat[iconID];
-            if(iconCat.hasOwnProperty('parentCode')){
+            if(_hasProperty(iconCat, 'parentCode')){
                 iconIDCat = iconCat[iconIDCat.parentCode];
             }
             res = iconIDCat;
@@ -147,7 +147,7 @@ function getIcon(iconObj){
         res = {
             iconName: '44',
             iconClass: 'i-'+iconObj.code
-        }
+        };
     }
 
     return res;
@@ -159,7 +159,11 @@ function toTitleCase(str) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function(){
+function _hasProperty(object, property){
+    return Object.prototype.hasOwnProperty.call(object, property);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
     window.bgPluck = selectBackground(Backgrounds);
     backgroundImage();
 
