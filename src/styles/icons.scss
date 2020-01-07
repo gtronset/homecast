@@ -1,11 +1,11 @@
 i.icon {
 
   &[class^="i-"]:before, &[class*=" i-"]:before {
+    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
     font-family: 'MeteoconsRegular';
-    font-weight: normal;
-    font-style: normal;
     text-decoration: inherit;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     display: inline;
     width: auto;
     height: auto;

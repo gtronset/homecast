@@ -1,4 +1,3 @@
-@import 'variables';
 @import 'fonts';
 @import 'icons';
 
@@ -28,18 +27,14 @@ body {
     right: 0;
     left: 0;
     height: 100%;
-    background-size: cover;
-  }
-
-  &:after {
-    background: linear-gradient(transparent, rgba(0,0,0,0.7)) no-repeat center center fixed;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7)) no-repeat center center/cover fixed;
   }
 }
 
 .content {
   color: white;
   direction: ltr;
-  font: 300 48px 'Roboto';
+  font: 300 48px 'Roboto', sans-serif;
   opacity: .34;
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 
@@ -54,13 +49,13 @@ body {
   transition: opacity 1s;
 
   .weather {
-    font: 300 20px/2rem 'Roboto';
+    font: 300 20px/2rem 'Roboto', sans-serif;
 
     text-transform: capitalize;
   }
 
   .image-description {
-    font: 300 20px/1 'Roboto';
+    font: 300 20px/1 'Roboto', sans-serif;
     opacity: 1;
     transition: opacity 1s;
   }

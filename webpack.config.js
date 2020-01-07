@@ -1,7 +1,10 @@
+/*eslint-env node */
+
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
     entry: [
@@ -34,12 +37,12 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader
                     },
-                    "css-loader",
-                    "postcss-loader",
+                    'css-loader',
+                    'postcss-loader',
                     {
-                        loader: "sass-loader",
+                        loader: 'sass-loader',
                         options: {
-                            implementation: require("sass")
+                            implementation: require('sass')
                         }
                     }
                 ]
@@ -48,7 +51,7 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg)$/,
                 use: [
                     {
-                        loader: "file-loader",
+                        loader: 'file-loader',
                         options: {
                             outputPath: 'images'
                         }
@@ -59,7 +62,7 @@ module.exports = {
                 test: /\.(woff|woff2|ttf|otf|eot)$/,
                 use: [
                     {
-                        loader: "file-loader",
+                        loader: 'file-loader',
                         options: {
                             outputPath: 'fonts'
                         }
@@ -74,10 +77,10 @@ module.exports = {
             minify: true
         }),
         new MiniCssExtractPlugin({
-            filename: "styles.css"
+            filename: 'styles.css'
         })
     ]
-}
+};
 
 if(process.env.NODE_ENV === 'distribution'){
     module.exports.mode = 'production';
@@ -85,15 +88,16 @@ if(process.env.NODE_ENV === 'distribution'){
         path: './.env.example',
         safe: true
     }));
+    module.exports.plugins.push(new StylelintPlugin());
 
     module.exports.module.rules.push({
         test: /\.jsx?$/,
-        enforce: "pre",
-        loader: "eslint-loader",
+        enforce: 'pre',
+        loader: 'eslint-loader',
         exclude: /node_modules/,
         options: {
             emitWarning: true,
-            configFile: "./.eslintrc.json"
+            configFile: './.eslintrc'
         }
     });
 } else {
