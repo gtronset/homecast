@@ -48,12 +48,14 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|jpe?g|gif|svg)$/,
+                test: /\.(png|jpe?g|gif|svg|ico)$/i,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            outputPath: 'images'
+                            outputPath: (url, resourcePath, context) => {
+                                return path.relative(context + '/src', resourcePath);
+                            }
                         }
                     }
                 ]

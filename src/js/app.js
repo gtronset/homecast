@@ -1,7 +1,21 @@
-import Backgrounds from './backgrounds.js';
-import Icons from './icons.js';
 import Variables from './variables.js';
+import Icons from './icons.js';
 import Weather from './weather.js';
+import DefaultBackgrounds from './default-backgrounds.js';
+import CustomBackgrounds from './custom-backgrounds.js';
+
+
+function _getBackgrounds(backgrounds_setting){
+    switch (backgrounds_setting){
+    case 'custom-backgrounds': 
+        return CustomBackgrounds;
+
+    default:
+        return DefaultBackgrounds;
+    }
+}
+
+const Backgrounds = _getBackgrounds(Variables.backgrounds);
 
 function displayTime() {
     var date = new Date;

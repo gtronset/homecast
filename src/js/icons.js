@@ -1,3 +1,11 @@
+/*global require*/
+
+function _importAll(r) {
+    return r.keys().map(r);
+}
+
+_importAll(require.context('../images/icons/', false, /\.(ico)$/));
+
 const icons = {
     i11d: {
         defaultIcon: {
