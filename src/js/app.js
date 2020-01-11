@@ -4,6 +4,7 @@ import Weather from './weather.js';
 import DefaultBackgrounds from './default-backgrounds.js';
 import CustomBackgrounds from './custom-backgrounds.js';
 
+const is_file_protocol = window.location.protocol === 'file:';
 
 function _getBackgrounds(backgrounds_setting){
     switch (backgrounds_setting){
@@ -92,18 +93,21 @@ function backgroundImage(){
         handleBGErrors(err);
     };
 
-    fetch(src.url, {}).then(res => {
-        if (res.ok) {
-            //img.src = src.url;
-            res.blob().then(b => {
-                img.src = URL.createObjectURL(b);
-            });
-        } else {
-            handleBGErrors(res.statusText);
-        }
-    }).catch(err => {
-        handleBGErrors(err);
-    });
+    if(is_file_protocol){
+        img.src = src.url;
+    } else { 
+        fetch(src.url, {}).then(res => {
+            if (res.ok) {
+                res.blob().then(b => {
+                    img.src = URL.createObjectURL(b);
+                });
+            } else {
+                handleBGErrors(res.statusText);
+            }
+        }).catch(err => {
+            handleBGErrors(err);
+        });
+    }
 
 }
 
