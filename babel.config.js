@@ -1,15 +1,13 @@
-/*eslint-env node */
-
 module.exports = {
     presets: [
         [
             '@babel/preset-env',
             {
                 targets: {
-                    node: 'current',
-                },
-            },
-        ],
+                    node: 'current'
+                }
+            }
+        ]
     ],
-    'plugins': ['macros']
+    plugins: ['macros', 'babel-plugin-rewire']
 };
