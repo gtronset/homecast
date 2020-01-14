@@ -1,5 +1,3 @@
-/*global require*/
-
 function _importAll(r) {
     return r.keys().map(r);
 }
