@@ -92,6 +92,9 @@ module.exports = {
 };
 
 let dotenvConfig = {};
+let minifyCssConfig = {
+    filename: 'styles.[chunkhash].css'
+};
 
 if (process.env.NODE_ENV === 'distribution') {
     module.exports.mode = 'production';
@@ -102,6 +105,8 @@ if (process.env.NODE_ENV === 'distribution') {
         path: './.env.example',
         safe: true
     };
+
+    minifyCssConfig.filename = 'styles.css';
 
     module.exports.module.rules.push({
         test: /\.jsx?$/,
@@ -120,3 +125,5 @@ if (process.env.NODE_ENV === 'analyze') {
 }
 
 module.exports.plugins.push(new Dotenv(dotenvConfig));
+
+module.exports.plugins.push(new MiniCssExtractPlugin(minifyCssConfig));

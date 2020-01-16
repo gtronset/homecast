@@ -2,8 +2,9 @@
 @import 'icons';
 
 html {
-    background-color: #000;
-    height: 100%;
+  background-color: #000;
+  height: 100%;
+  font-size: 100%;
 }
 
 body {
@@ -19,24 +20,27 @@ body {
     margin: 0;
     padding: 0;
 
-    &:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        height: 100%;
-        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7)) no-repeat
-            center center/cover fixed;
-    }
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  line-height: 1.65;
+
+  &:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7)) no-repeat center center/cover fixed;
+  }
 }
 
 .content {
-    color: white;
-    direction: ltr;
-    font: 300 48px 'Roboto', sans-serif;
-    opacity: 0.34;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+  direction: ltr;
+  font-size: 48px;
+  opacity: .34;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 
     bottom: 64px;
     float: right;
@@ -48,17 +52,14 @@ body {
     text-align: right;
     transition: opacity 1s;
 
-    .weather {
-        font: 300 20px/2rem 'Roboto', sans-serif;
+  .weather, .image-description {
+    font-size: 20px;
+    line-height: 2rem;
+  }
 
-        text-transform: capitalize;
-    }
-
-    .image-description {
-        font: 300 20px/1 'Roboto', sans-serif;
-        opacity: 1;
-        transition: opacity 1s;
-    }
+  .weather {
+    text-transform: capitalize;
+  }
 }
 
 figure {
@@ -82,4 +83,15 @@ figure {
 
 .hidden {
     opacity: 0 !important;
+}
+
+@media only screen and (min-width: 480px) {
+  .content {
+    font-size: 5rem;
+
+    .weather, .image-description {
+      font-size: 2.5rem;
+      line-height: 2rem;
+    }
+  }
 }
