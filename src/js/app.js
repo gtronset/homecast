@@ -1,6 +1,7 @@
 import Variables from './variables.js';
 import Icons from './icons.js';
 import Weather from './weather.js';
+import Utilities from './utilities';
 
 import DefaultBackgrounds from './default-backgrounds.js';
 import CustomBackgrounds from './custom-backgrounds.js';
@@ -45,7 +46,7 @@ function updateWeatherInformation(current){
     const iconSelector = weatherSelector.querySelector('.icon');
 
     const temperature = Math.floor(current.temperature());
-    const weatherCond = toTitleCase(current.conditions());
+    const weatherCond = Utilities.toTitleCase(current.conditions());
 
     const icon = getIcon(current.icon());
 
@@ -83,18 +84,18 @@ function getIcon(iconObj){
     
     let res = {};
 
-    if(_hasProperty(Icons, iconID)){
+    if(Utilities.hasProperty(Icons, iconID)){
         res = Icons[iconID];
-    } else if (_hasProperty(Icons, iconCode)) {
+    } else if (Utilities.hasProperty(Icons, iconCode)) {
         let iconCat = Icons[iconCode];
 
-        if(_hasProperty(iconCat, 'parentCode')){
+        if(Utilities.hasProperty(iconCat, 'parentCode')){
             iconCat = Icons[iconCat.parentCode];
         }
 
-        if (_hasProperty(iconCat, iconID)) {
+        if (Utilities.hasProperty(iconCat, iconID)) {
             let iconIDCat = iconCat[iconID];
-            if(_hasProperty(iconCat, 'parentCode')){
+            if(Utilities.hasProperty(iconCat, 'parentCode')){
                 iconIDCat = iconCat[iconIDCat.parentCode];
             }
             res = iconIDCat;
@@ -120,7 +121,7 @@ function updateBackgroundImageInformation(backgroundItem, callback){
     document.querySelector('body').style.backgroundImage = `url(${backgroundItem.url})`;
 
     var imgAuthor = '-';
-    if(_hasProperty(backgroundItem, 'author')) {
+    if(Utilities.hasProperty(backgroundItem, 'author')) {
         imgAuthor = backgroundItem.author;
     }
     var description = document.getElementById('image-description');
@@ -176,9 +177,9 @@ function setBackgroundImage(backgroundList){
 
 function backgroundImage(backgroundList){
     setBackgroundImage(backgroundList).then((updatedBackgroundList) => 
-        delay(Variables.cycle_duration).then(() => backgroundImage(updatedBackgroundList))
+        Utilities.delay(Variables.cycle_duration).then(() => backgroundImage(updatedBackgroundList))
     ).catch((updatedBackgroundList) =>
-        delay(3000).then(() => backgroundImage(updatedBackgroundList))
+        Utilities.delay(3000).then(() => backgroundImage(updatedBackgroundList))
     );
 }
 
@@ -201,20 +202,6 @@ function selectBackgroundItem(backgroundList, random = Math.random()) {
     const item = backgroundList[index];
         
     return item;
-}
-
-/* Utilities */
-
-const delay = t => new Promise(resolve => setTimeout(resolve, t));
-
-function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt){
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-}
-
-function _hasProperty(object, property){
-    return Object.prototype.hasOwnProperty.call(object, property);
 }
 
 /* Initialize */
