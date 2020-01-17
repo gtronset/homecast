@@ -1,6 +1,9 @@
 import Variables from './variables.js';
 import Icons from './icons.js';
 import Weather from './weather.js';
+import Utilities from './utilities';
+
+const { delay, hasProperty, toTitleCase } = Utilities;
 
 import DefaultBackgrounds from './default-backgrounds.js';
 import CustomBackgrounds from './custom-backgrounds.js';
@@ -83,18 +86,18 @@ function getIcon(iconObj){
     
     let res = {};
 
-    if(_hasProperty(Icons, iconID)){
+    if(hasProperty(Icons, iconID)){
         res = Icons[iconID];
-    } else if (_hasProperty(Icons, iconCode)) {
+    } else if (hasProperty(Icons, iconCode)) {
         let iconCat = Icons[iconCode];
 
-        if(_hasProperty(iconCat, 'parentCode')){
+        if(hasProperty(iconCat, 'parentCode')){
             iconCat = Icons[iconCat.parentCode];
         }
 
-        if (_hasProperty(iconCat, iconID)) {
+        if (hasProperty(iconCat, iconID)) {
             let iconIDCat = iconCat[iconID];
-            if(_hasProperty(iconCat, 'parentCode')){
+            if(hasProperty(iconCat, 'parentCode')){
                 iconIDCat = iconCat[iconIDCat.parentCode];
             }
             res = iconIDCat;
@@ -120,7 +123,7 @@ function updateBackgroundImageInformation(backgroundItem, callback){
     document.querySelector('body').style.backgroundImage = `url(${backgroundItem.url})`;
 
     var imgAuthor = '-';
-    if(_hasProperty(backgroundItem, 'author')) {
+    if(hasProperty(backgroundItem, 'author')) {
         imgAuthor = backgroundItem.author;
     }
     var description = document.getElementById('image-description');
@@ -201,20 +204,6 @@ function selectBackgroundItem(backgroundList, random = Math.random()) {
     const item = backgroundList[index];
         
     return item;
-}
-
-/* Utilities */
-
-const delay = t => new Promise(resolve => setTimeout(resolve, t));
-
-function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt){
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-}
-
-function _hasProperty(object, property){
-    return Object.prototype.hasOwnProperty.call(object, property);
 }
 
 /* Initialize */
