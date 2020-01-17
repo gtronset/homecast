@@ -3,6 +3,8 @@ import Icons from './icons.js';
 import Weather from './weather.js';
 import Utilities from './utilities';
 
+const { delay, hasProperty, toTitleCase } = Utilities;
+
 import DefaultBackgrounds from './default-backgrounds.js';
 import CustomBackgrounds from './custom-backgrounds.js';
 
@@ -46,7 +48,7 @@ function updateWeatherInformation(current){
     const iconSelector = weatherSelector.querySelector('.icon');
 
     const temperature = Math.floor(current.temperature());
-    const weatherCond = Utilities.toTitleCase(current.conditions());
+    const weatherCond = toTitleCase(current.conditions());
 
     const icon = getIcon(current.icon());
 
@@ -84,18 +86,18 @@ function getIcon(iconObj){
     
     let res = {};
 
-    if(Utilities.hasProperty(Icons, iconID)){
+    if(hasProperty(Icons, iconID)){
         res = Icons[iconID];
-    } else if (Utilities.hasProperty(Icons, iconCode)) {
+    } else if (hasProperty(Icons, iconCode)) {
         let iconCat = Icons[iconCode];
 
-        if(Utilities.hasProperty(iconCat, 'parentCode')){
+        if(hasProperty(iconCat, 'parentCode')){
             iconCat = Icons[iconCat.parentCode];
         }
 
-        if (Utilities.hasProperty(iconCat, iconID)) {
+        if (hasProperty(iconCat, iconID)) {
             let iconIDCat = iconCat[iconID];
-            if(Utilities.hasProperty(iconCat, 'parentCode')){
+            if(hasProperty(iconCat, 'parentCode')){
                 iconIDCat = iconCat[iconIDCat.parentCode];
             }
             res = iconIDCat;
@@ -121,7 +123,7 @@ function updateBackgroundImageInformation(backgroundItem, callback){
     document.querySelector('body').style.backgroundImage = `url(${backgroundItem.url})`;
 
     var imgAuthor = '-';
-    if(Utilities.hasProperty(backgroundItem, 'author')) {
+    if(hasProperty(backgroundItem, 'author')) {
         imgAuthor = backgroundItem.author;
     }
     var description = document.getElementById('image-description');
@@ -177,9 +179,9 @@ function setBackgroundImage(backgroundList){
 
 function backgroundImage(backgroundList){
     setBackgroundImage(backgroundList).then((updatedBackgroundList) => 
-        Utilities.delay(Variables.cycle_duration).then(() => backgroundImage(updatedBackgroundList))
+        delay(Variables.cycle_duration).then(() => backgroundImage(updatedBackgroundList))
     ).catch((updatedBackgroundList) =>
-        Utilities.delay(3000).then(() => backgroundImage(updatedBackgroundList))
+        delay(3000).then(() => backgroundImage(updatedBackgroundList))
     );
 }
 
