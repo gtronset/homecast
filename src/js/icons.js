@@ -6,7 +6,10 @@ function _importAll(r) {
 
 _importAll(require.context('../images/icons/', false, /\.(ico)$/));
 
-const icons = {
+import Utilities from './utilities';
+const { hasProperty } = Utilities;
+
+const iconList = {
     i11d: {
         defaultIcon: {
             iconName: '33',
@@ -183,6 +186,54 @@ const icons = {
         iconName: '6',
         iconClass: 'i-wind'
     }
+};
+
+/* Icon Handling */
+
+function changeFavicon(src) {
+    document.querySelector('link[rel="shortcut icon"]').href = src;
+}
+
+function getIcon(iconObj){
+    const iconID = `i${iconObj.id}`;
+    const iconCode = `i${iconObj.code}`;
+    
+    let res = {};
+
+    if(hasProperty(iconList, iconID)){
+        res = iconList[iconID];
+    } else if (hasProperty(iconList, iconCode)) {
+        let iconCat = iconList[iconCode];
+
+        if(hasProperty(iconCat, 'parentCode')){
+            iconCat = iconList[iconCat.parentCode];
+        }
+
+        if (hasProperty(iconCat, iconID)) {
+            let iconIDCat = iconCat[iconID];
+            if(hasProperty(iconCat, 'parentCode')){
+                iconIDCat = iconCat[iconIDCat.parentCode];
+            }
+            res = iconIDCat;
+        } else if (iconCat.altCodes.includes(iconCode)) {
+            res = iconCat.altIcon;
+        } else {
+            res = iconCat.defaultIcon;
+        }
+    } else {
+        console.log('Error!', iconObj);
+        res = {
+            iconName: '44',
+            iconClass: `i-${iconObj.code}`
+        };
+    }
+
+    return res;
+}
+
+const icons = {
+    getIcon: getIcon,
+    changeFavicon: changeFavicon
 };
 
 export default icons;
