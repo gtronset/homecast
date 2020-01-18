@@ -1,5 +1,5 @@
 import Variables from './variables';
-import Weather from './weather';
+import Weather from './weather/weather';
 import Backgrounds from './backgrounds';
 import Time from './time';
 
@@ -12,8 +12,7 @@ const intialize = () => {
 
     Weather.initialize(
         Variables.weather_api_key,
-        Variables.default_city,
-        Variables.cycle_duration
+        Variables.default_city
     );
 };
 

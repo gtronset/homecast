@@ -1,8 +1,15 @@
-import Icons from './icons';
+import Icons from '../icons';
 import WeatherClient from './weather-client';
 
-import Utilities from './utilities';
+import Utilities from '../utilities';
 const { delay, toTitleCase } = Utilities;
+
+/*
+    Set time-to-refresh at 5 minutes. Weather data in OWM's system is updated
+    no more than one time every 10 minutes
+*/
+
+const DEFAULT_CYCLE_DURATION = 300000;
 
 function updateWeatherInformation(current){
     const weatherSelector = document.getElementById('weather');
@@ -29,19 +36,17 @@ function updateWeatherInformation(current){
     document.querySelector('title').innerHTML = `${temperature}° ${weatherCond}`;
 }
 
-function displayWeather(city, cycle_duration = 30000){
-    delay(cycle_duration).then(() => {
-        WeatherClient.getCurrent(city, updateWeatherInformation);
+function displayWeather(city, cycle_duration = DEFAULT_CYCLE_DURATION){
+    WeatherClient.getCurrent(city, updateWeatherInformation);
 
-        displayWeather(city, cycle_duration);
-    });
+    delay(cycle_duration).then(() => displayWeather(city, cycle_duration));
 }
 
 const weather = {
-    initialize: function(weather_api_key, city, cycle_duration){
+    initialize: function(weather_api_key, city){
         WeatherClient.apiKey = weather_api_key;
 
-        displayWeather(city, cycle_duration);
+        displayWeather(city);
     }
 };
 
