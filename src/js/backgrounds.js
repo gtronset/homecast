@@ -8,6 +8,16 @@ const RETRY_DURATION = 3000;
 
 /* Background Image */
 
+function getBackgroundList(backgrounds_setting){
+    switch (backgrounds_setting){
+    case 'custom-backgrounds': 
+        return CustomBackgrounds;
+
+    default:
+        return DefaultBackgrounds;
+    }
+}
+
 function updateBackgroundImageInformation(backgroundItem, callback){
     document.querySelector('body').style.backgroundImage = `url(${backgroundItem.url})`;
 
@@ -52,7 +62,7 @@ function setBackgroundImage(backgroundList, originalList){
                 updatedBackgroundList: updatedBackgroundList
             }));
         });
-        img.addEventListener('error', reject({
+        img.addEventListener('error', () => reject({
             backgroundList: backgroundList,
             updatedBackgroundList: updatedBackgroundList
         }));
@@ -110,15 +120,7 @@ function cycleBackgrounds(backgroundList, cycle_duration, originalList = backgro
 }
 
 const backgrounds = {
-    getList: function(backgrounds_setting){
-        switch (backgrounds_setting){
-        case 'custom-backgrounds': 
-            return CustomBackgrounds;
-    
-        default:
-            return DefaultBackgrounds;
-        }
-    },
+    getList: getBackgroundList,
     initialize: cycleBackgrounds
 };
 
