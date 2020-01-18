@@ -5,7 +5,7 @@ import Backgrounds from './backgrounds';
 import Time from './time';
 
 import Utilities from './utilities';
-const { hasProperty, toTitleCase } = Utilities;
+const { toTitleCase } = Utilities;
 
 const BackgroundsList = Backgrounds.getList(Variables.backgrounds);
 
@@ -18,7 +18,7 @@ function updateWeatherInformation(current){
     const temperature = Math.floor(current.temperature());
     const weatherCond = toTitleCase(current.conditions());
 
-    const icon = getIcon(current.icon());
+    const icon = Icons.getIcon(current.icon());
 
     const iconRegex = /(^|\s)i-\S+/g;
 
@@ -29,7 +29,7 @@ function updateWeatherInformation(current){
     }
     iconSelector.classList.add(icon.iconClass);
 
-    changeFavicon(`images/icons/${icon.iconName}.ico`);
+    Icons.changeFavicon(`images/icons/${icon.iconName}.ico`);
 
     weatherSelector.querySelector('.description').innerHTML = weatherCond;
 
@@ -42,53 +42,9 @@ function displayWeather(){
     setTimeout(displayWeather, Variables.cycle_duration);
 }
 
-/* Icon Handling */
-
-function changeFavicon(src) {
-    document.querySelector('link[rel="shortcut icon"]').href = src;
-}
-
-function getIcon(iconObj){
-    const iconID = `i${iconObj.id}`;
-    const iconCode = `i${iconObj.code}`;
-    
-    let res = {};
-
-    if(hasProperty(Icons, iconID)){
-        res = Icons[iconID];
-    } else if (hasProperty(Icons, iconCode)) {
-        let iconCat = Icons[iconCode];
-
-        if(hasProperty(iconCat, 'parentCode')){
-            iconCat = Icons[iconCat.parentCode];
-        }
-
-        if (hasProperty(iconCat, iconID)) {
-            let iconIDCat = iconCat[iconID];
-            if(hasProperty(iconCat, 'parentCode')){
-                iconIDCat = iconCat[iconIDCat.parentCode];
-            }
-            res = iconIDCat;
-        } else if (iconCat.altCodes.includes(iconCode)) {
-            res = iconCat.altIcon;
-        } else {
-            res = iconCat.defaultIcon;
-        }
-    } else {
-        console.log('Error!', iconObj);
-        res = {
-            iconName: '44',
-            iconClass: `i-${iconObj.code}`
-        };
-    }
-
-    return res;
-}
-
 /* Initialize */
 
 document.addEventListener('DOMContentLoaded', function(){
-
     Backgrounds.initialize(BackgroundsList, Variables.cycle_duration);
 
     Time.initialize();
