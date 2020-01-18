@@ -1,26 +1,12 @@
 import Variables from './variables.js';
 import Icons from './icons.js';
 import Weather from './weather.js';
+import Backgrounds from './backgrounds';
+
 import Utilities from './utilities';
+const { hasProperty, toTitleCase } = Utilities;
 
-const { delay, hasProperty, toTitleCase } = Utilities;
-
-import DefaultBackgrounds from './default-backgrounds.js';
-import CustomBackgrounds from './custom-backgrounds.js';
-
-const is_file_protocol = window.location.protocol === 'file:';
-
-function _getBackgrounds(backgrounds_setting){
-    switch (backgrounds_setting){
-    case 'custom-backgrounds': 
-        return CustomBackgrounds;
-
-    default:
-        return DefaultBackgrounds;
-    }
-}
-
-const BackgroundsList = _getBackgrounds(Variables.backgrounds);
+const BackgroundsList = Backgrounds.getList(Variables.backgrounds);
 
 /* Time/Clock */
 
@@ -117,99 +103,11 @@ function getIcon(iconObj){
     return res;
 }
 
-/* Background Image */
-
-function updateBackgroundImageInformation(backgroundItem, callback){
-    document.querySelector('body').style.backgroundImage = `url(${backgroundItem.url})`;
-
-    var imgAuthor = '-';
-    if(hasProperty(backgroundItem, 'author')) {
-        imgAuthor = backgroundItem.author;
-    }
-    var description = document.getElementById('image-description');
-
-    description.classList.add('hidden');
-    setTimeout(function () {
-        description.textContent = imgAuthor;
-        description.classList.remove('hidden');
-    }, 1000);
-
-    callback();
-}
-
-function setBackgroundImage(backgroundList){
-    const backgroundItem = selectBackgroundItem(backgroundList);
-
-    const filteredList = filterBackgroundList(backgroundList, backgroundItem);
-    const updatedBackgroundList = coalesceBackgroundList(BackgroundsList, filteredList);
-
-    return new Promise((resolve, reject) => {
-
-        var img = new Image();
-        img.addEventListener('load', function(){
-            if (('naturalHeight' in this &&
-                this.naturalHeight + this.naturalWidth === 0) ||
-                (this.width + this.height == 0)) {
-                this.onerror(this);
-                return;
-            }
-
-            URL.revokeObjectURL(this.backgroundItem);
-
-            updateBackgroundImageInformation(backgroundItem, () => resolve(updatedBackgroundList));
-        });
-        img.addEventListener('error', reject);
-
-        if(is_file_protocol){
-            img.src = backgroundItem.url;
-        } else { 
-            fetch(backgroundItem.url, {mode: 'no-cors'}).then(res => {
-                if (res.ok) {
-                    res.blob().then(b => {
-                        img.src = URL.createObjectURL(b);
-                    });
-                } else {
-                    reject(updatedBackgroundList);
-                }
-            }).catch(() => reject(updatedBackgroundList));
-        }
-    });
-
-}
-
-function backgroundImage(backgroundList){
-    setBackgroundImage(backgroundList).then((updatedBackgroundList) => 
-        delay(Variables.cycle_duration).then(() => backgroundImage(updatedBackgroundList))
-    ).catch((updatedBackgroundList) =>
-        delay(3000).then(() => backgroundImage(updatedBackgroundList))
-    );
-}
-
-function filterBackgroundList(backgroundList, backgroundItem){
-    return backgroundList.filter(item => item !== backgroundItem);
-}
-
-function coalesceBackgroundList(originalList, backgroundList = []){
-    let list = backgroundList;
-
-    if(backgroundList.length < 1){
-        list = originalList.slice(0);
-    }
-    
-    return list;
-}
-
-function selectBackgroundItem(backgroundList, random = Math.random()) {
-    const index = Math.floor(random * backgroundList.length);
-    const item = backgroundList[index];
-        
-    return item;
-}
-
 /* Initialize */
 
 document.addEventListener('DOMContentLoaded', function(){
-    backgroundImage(BackgroundsList);
+
+    Backgrounds.initialize(BackgroundsList, Variables.cycle_duration);
 
     displayTime();
 
