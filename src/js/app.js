@@ -2,30 +2,12 @@ import Variables from './variables.js';
 import Icons from './icons.js';
 import Weather from './weather.js';
 import Backgrounds from './backgrounds';
+import Time from './time';
 
 import Utilities from './utilities';
 const { hasProperty, toTitleCase } = Utilities;
 
 const BackgroundsList = Backgrounds.getList(Variables.backgrounds);
-
-/* Time/Clock */
-
-function getFormattedTime(date = new Date()) {
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    const ampm = hours >= 12 ? 'pm' : 'am';
-
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-
-    return `${hours}:${minutes} ${ampm}`;
-}
-
-function displayTime(){
-    document.getElementById('clock').innerHTML = getFormattedTime();
-    setTimeout(displayTime, 500);
-}
 
 /* Weather */
 
@@ -109,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     Backgrounds.initialize(BackgroundsList, Variables.cycle_duration);
 
-    displayTime();
+    Time.initialize();
 
     Weather.apiKey = Variables.weather_api_key;
     displayWeather();
