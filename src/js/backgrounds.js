@@ -1,5 +1,5 @@
 import Utilities from './utilities';
-const { hasProperty, delay } = Utilities;
+const { hasProperty, delay, clone } = Utilities;
 
 import DefaultBackgrounds from './background_lists/default-backgrounds';
 import CustomBackgrounds from './background_lists/custom-backgrounds';
@@ -18,8 +18,25 @@ function getBackgroundList(backgrounds_setting){
     }
 }
 
+function transitionBackgroundImage(backgroundItem){
+    const bodySelector = document.querySelector('body');
+    const figureSelector = document.querySelector('figure');
+    
+    let figureOpacity = Number(figureSelector.style.opacity);
+    let transitionSelection = figureSelector;
+
+    if(figureOpacity == 1){
+        transitionSelection = bodySelector;
+    }
+
+    delay(1).then(() => {
+        transitionSelection.style.backgroundImage = `url(${backgroundItem.url})`;
+        figureSelector.style.opacity = Number(!figureOpacity);
+    });
+}
+
 function updateBackgroundImageInformation(backgroundItem, callback){
-    document.querySelector('body').style.backgroundImage = `url(${backgroundItem.url})`;
+    transitionBackgroundImage(backgroundItem);
 
     let imgAuthor = '-';
     if(hasProperty(backgroundItem, 'author')) {
@@ -58,31 +75,31 @@ function setBackgroundImage(backgroundList, originalList){
             URL.revokeObjectURL(this.backgroundItem);
 
             updateBackgroundImageInformation(backgroundItem, () => resolve({
-                backgroundList: backgroundList,
+                originalList: originalList,
                 updatedBackgroundList: updatedBackgroundList
             }));
         });
         img.addEventListener('error', () => reject({
-            backgroundList: backgroundList,
+            originalList: originalList,
             updatedBackgroundList: updatedBackgroundList
         }));
 
         if(is_file_protocol){
             img.src = backgroundItem.url;
         } else { 
-            fetch(backgroundItem.url, {mode: 'no-cors'}).then(res => {
+            fetch(backgroundItem.url).then(res => {
                 if (res.ok) {
                     res.blob().then(b => {
                         img.src = URL.createObjectURL(b);
                     });
                 } else {
                     reject({
-                        backgroundList: backgroundList,
+                        originalList: originalList,
                         updatedBackgroundList: updatedBackgroundList
                     });
                 }
             }).catch(() => reject({
-                originalList: backgroundList,
+                originalList: originalList,
                 updatedBackgroundList: updatedBackgroundList
             }));
         }
@@ -98,7 +115,7 @@ function coalesceBackgroundList(originalList, backgroundList = []){
     let list = backgroundList;
 
     if(backgroundList.length < 1){
-        list = originalList.slice(0);
+        list = clone(originalList);
     }
     
     return list;
@@ -111,11 +128,15 @@ function selectBackgroundItem(backgroundList, random = Math.random()) {
     return item;
 }
 
-function cycleBackgrounds(backgroundList, cycle_duration, originalList = backgroundList){
+function cycleBackgrounds(backgroundList, cycle_duration, originalList = clone(backgroundList)){
     setBackgroundImage(backgroundList, originalList).then(({ originalList, updatedBackgroundList }) => 
-        delay(cycle_duration).then(() => cycleBackgrounds(updatedBackgroundList, cycle_duration, originalList))
+        delay(cycle_duration).then(() =>
+            cycleBackgrounds(updatedBackgroundList, cycle_duration, originalList)
+        )
     ).catch(({ originalList, updatedBackgroundList }) =>
-        delay(RETRY_DURATION).then(() => cycleBackgrounds(updatedBackgroundList, cycle_duration, originalList))
+        delay(RETRY_DURATION).then(() =>
+            cycleBackgrounds(updatedBackgroundList, cycle_duration, originalList)
+        )
     );
 }
 

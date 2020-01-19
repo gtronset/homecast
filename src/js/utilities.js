@@ -1,6 +1,8 @@
 const utlities = {
 
     delay: t => new Promise(resolve => setTimeout(resolve, t)),
+
+    clone: (array) => array.slice(0),
     
     toTitleCase: (str) => {
         return str.replace(/\w\S*/g, function(txt){
