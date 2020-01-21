@@ -22,7 +22,7 @@
         "./*.js": [
             "eslint --fix"
         ],
-        "./*.json": [
+        "./*.{json|md}": [
             "prettier --write"
         ],
         "src/**/*.{js,jsx}": [
