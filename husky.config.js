@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 const runNPMLock = 'npm install --from-lock-file';
 
 module.exports = {
