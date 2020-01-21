@@ -3,6 +3,7 @@
         "browser": true,
         "es6": true
     },
+    "ignorePatterns": ["dist/**/*.js"],
     "extends": ["eslint:recommended", "plugin:prettier/recommended"],
     "globals": {
         "Atomics": "readonly",

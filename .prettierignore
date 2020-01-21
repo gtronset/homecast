@@ -1,2 +1,19 @@
+# OS generated files
+ehthumbs.db
+Thumbs.db
+.DS_Store
+
+# env files
+.env
+.env.example
+
+# .ignore files
+.gitignore
+.prettierignore
+
+# build files
+dist
+
+# node/npm
+node_modules
 package-lock.json
-node_modules/
