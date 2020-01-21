@@ -1,23 +1,24 @@
 @font-face {
-  font-family: 'MeteoconsRegular';
-  font-style: normal;
-  font-weight: normal;
-  src: url(../fonts/meteocons-webfont.eot);
-  src: url(../fonts/meteocons-webfont.eot?#iefix) format('embedded-opentype'),
-      url(../fonts/meteocons-webfont.woff) format('woff'),
-      url(../fonts/meteocons-webfont.ttf) format('truetype'),
-      url(../fonts/meteocons-webfont.svg#MeteoconsRegular) format('svg');
+    font-family: 'MeteoconsRegular';
+    font-style: normal;
+    font-weight: normal;
+    src: url(../fonts/meteocons-webfont.eot);
+    src: url(../fonts/meteocons-webfont.eot?#iefix) format('embedded-opentype'),
+        url(../fonts/meteocons-webfont.woff) format('woff'),
+        url(../fonts/meteocons-webfont.ttf) format('truetype'),
+        url(../fonts/meteocons-webfont.svg#MeteoconsRegular) format('svg');
 }
 
 @font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  src: url('../fonts/roboto-v20-latin-300.eot'); /* IE9 Compat Modes */
-  src: local('Roboto Light'), local('Roboto-Light'),
-      url('../fonts/roboto-v20-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-      url('../fonts/roboto-v20-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
-      url('../fonts/roboto-v20-latin-300.woff') format('woff'), /* Modern Browsers */
-      url('../fonts/roboto-v20-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
-      url('../fonts/roboto-v20-latin-300.svg#Roboto') format('svg'); /* Legacy iOS */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/roboto-v20-latin-300.eot');
+    src: local('Roboto Light'), local('Roboto-Light'),
+        url('../fonts/roboto-v20-latin-300.eot?#iefix')
+            format('embedded-opentype'),
+        url('../fonts/roboto-v20-latin-300.woff2') format('woff2'),
+        url('../fonts/roboto-v20-latin-300.woff') format('woff'),
+        url('../fonts/roboto-v20-latin-300.ttf') format('truetype'),
+        url('../fonts/roboto-v20-latin-300.svg#Roboto') format('svg');
 }
