@@ -2,83 +2,84 @@
 @import 'icons';
 
 html {
-  background-color: #000;
-  height: 100%;
+    background-color: #000;
+    height: 100%;
 }
 
 body {
-  background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
+    background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
 
-  background-blend-mode: darken;
+    background-blend-mode: darken;
 
-  height: 100%;
-  margin: 0;
-  padding: 0;
-
-  &:after{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
     height: 100%;
-    background: linear-gradient(transparent, rgba(0,0,0,0.7)) no-repeat center center/cover fixed;
-  }
+    margin: 0;
+    padding: 0;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 100%;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7)) no-repeat
+            center center/cover fixed;
+    }
 }
 
 .content {
-  color: white;
-  direction: ltr;
-  font: 300 48px 'Roboto', sans-serif;
-  opacity: .34;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    color: white;
+    direction: ltr;
+    font: 300 48px 'Roboto', sans-serif;
+    opacity: 0.34;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
-  bottom: 64px;
-  float: right;
-  margin-right: 64px;
-  max-width: 60%;
-  position: absolute;
-  z-index: 2;
-  right: 0;
-  text-align: right;
-  transition: opacity 1s;
-
-  .weather {
-    font: 300 20px/2rem 'Roboto', sans-serif;
-
-    text-transform: capitalize;
-  }
-
-  .image-description {
-    font: 300 20px/1 'Roboto', sans-serif;
-    opacity: 1;
+    bottom: 64px;
+    float: right;
+    margin-right: 64px;
+    max-width: 60%;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    text-align: right;
     transition: opacity 1s;
-  }
+
+    .weather {
+        font: 300 20px/2rem 'Roboto', sans-serif;
+
+        text-transform: capitalize;
+    }
+
+    .image-description {
+        font: 300 20px/1 'Roboto', sans-serif;
+        opacity: 1;
+        transition: opacity 1s;
+    }
 }
 
 figure {
-  backface-visibility: hidden;
+    backface-visibility: hidden;
 
-  background-size: cover;
-  background-position: center center;
-  background-blend-mode: darken;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: darken;
 
-  color: transparent;
-  opacity: 0;
-  transition: opacity 5s ease-in-out;
+    color: transparent;
+    opacity: 0;
+    transition: opacity 5s ease-in-out;
 
-  height: 100%;
-  left: 0px;
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  margin: 0;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    margin: 0;
 }
 
 .hidden {
-  opacity: 0 !important;
+    opacity: 0 !important;
 }

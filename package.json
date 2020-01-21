@@ -1,56 +1,54 @@
 {
-  "name": "homecast",
-  "version": "1.0.1",
-  "description": "Home pages inspired by the Google Cromecast home page.",
-  "main": "index.js",
-  "scripts": {
-    "start": "webpack-dev-server --mode development --hot",
-    "build": "webpack --mode production",
-    "dist": "NODE_ENV='distribution' webpack"
-  },
-  "author": "Gavin Tronset",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gtronset/homecast.git"
-  },
-  "lint-staged": {
-    "./*.js": [
-      "eslint --fix"
-    ],
-    "src/**/*.{js,jsx}": [
-      "eslint src/ --fix"
-    ],
-    "src/**/*.scss": [
-      "stylelint --syntax scss --fix"
-    ]
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
-    "autoprefixer": "^9.7.3",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.4.1",
-    "cssnano": "^4.1.10",
-    "dotenv-webpack": "^1.7.0",
-    "eslint": "^6.8.0",
-    "eslint-loader": "^3.0.3",
-    "fibers": "^4.0.2",
-    "file-loader": "^5.0.2",
-    "html-webpack-plugin": "^3.2.0",
-    "husky": "^4.0.10",
-    "lint-staged": "^10.0.1",
-    "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.13.0",
-    "postcss-loader": "^3.0.0",
-    "sass": "^1.24.2",
-    "sass-loader": "^8.0.0",
-    "stylelint": "^12.0.1",
-    "stylelint-config-recommended": "^3.0.0",
-    "stylelint-webpack-plugin": "^1.1.2",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1"
-  }
+    "name": "homecast",
+    "version": "1.0.1",
+    "description": "Home pages inspired by the Google Cromecast home page.",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack-dev-server --mode development --hot",
+        "build": "webpack --mode production",
+        "dist": "NODE_ENV='distribution' webpack",
+        "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
+        "lint:scss:fix": "stylelint 'src/**/*.scss' --syntax scss --fix",
+        "lint:js": "eslint . --ext .js,.jsx",
+        "lint:js:fix": "npm run lint:js -- --fix"
+    },
+    "author": "Gavin Tronset",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gtronset/homecast.git"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@babel/core": "^7.7.7",
+        "@babel/preset-env": "^7.7.7",
+        "autoprefixer": "^9.7.3",
+        "babel-loader": "^8.0.6",
+        "css-loader": "^3.4.1",
+        "cssnano": "^4.1.10",
+        "dotenv-webpack": "^1.7.0",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.9.0",
+        "eslint-loader": "^3.0.3",
+        "eslint-plugin-prettier": "^3.1.2",
+        "fibers": "^4.0.2",
+        "file-loader": "^5.0.2",
+        "html-webpack-plugin": "^3.2.0",
+        "husky": "^4.0.10",
+        "lint-staged": "^10.0.1",
+        "mini-css-extract-plugin": "^0.9.0",
+        "node-sass": "^4.13.0",
+        "postcss-loader": "^3.0.0",
+        "prettier": "^1.19.1",
+        "sass": "^1.24.2",
+        "sass-loader": "^8.0.0",
+        "stylelint": "^12.0.1",
+        "stylelint-config-prettier": "^8.0.1",
+        "stylelint-config-recommended": "^3.0.0",
+        "stylelint-prettier": "^1.1.2",
+        "stylelint-webpack-plugin": "^1.1.2",
+        "webpack": "^4.41.5",
+        "webpack-cli": "^3.3.10",
+        "webpack-dev-server": "^3.10.1"
+    }
 }

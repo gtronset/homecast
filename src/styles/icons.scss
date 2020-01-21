@@ -1,102 +1,110 @@
 i.icon {
+    &[class^='i-']:before,
+    &[class*=' i-']:before {
+        /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+        font-family: 'MeteoconsRegular';
+        text-decoration: inherit;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        display: inline;
+        width: auto;
+        height: auto;
+        line-height: normal;
+        vertical-align: baseline;
+    }
 
-  &[class^="i-"]:before, &[class*=" i-"]:before {
-    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-    font-family: 'MeteoconsRegular';
-    text-decoration: inherit;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: inline;
-    width: auto;
-    height: auto;
-    line-height: normal;
-    vertical-align: baseline;
-  }
+    &.i-01d:before {
+        content: '1';
+    }
+    &.i-01n:before {
+        content: '2';
+    }
+    &.i-02d:before {
+        content: '3';
+    }
+    &.i-02n:before {
+        content: '4';
+    }
 
-  &.i-01d:before {
-    content: "1";
-  }
-  &.i-01n:before {
-    content: "2";
-  }
-  &.i-02d:before {
-    content: "3";
-  }
-  &.i-02n:before {
-    content: "4";
-  }
+    &.i-03d:before,
+    &.i-03n:before {
+        content: '5';
+    }
+    &.i-04d:before,
+    &.i-04n:before {
+        content: '%';
+    }
+    &.i-09d:before,
+    &.i-09n:before {
+        content: '8';
+    }
+    &.i-10d:before,
+    &.i-10n:before {
+        content: '7';
+    }
+    &.i-11d:before,
+    &.i-11n:before {
+        content: '&';
+    }
+    &.i-13d:before,
+    &.i-13n:before {
+        content: '#';
+    }
+    &.i-50d:before,
+    &.i-50n:before {
+        content: 'M';
+    }
 
-  &.i-03d:before, &.i-03n:before {
-    content: "5";
-  }
-  &.i-04d:before, &.i-04n:before {
-    content: "%";
-  }
-  &.i-09d:before, &.i-09n:before {
-    content: "8";
-  }
-  &.i-10d:before, &.i-10n:before {
-    content: "7";
-  }
-  &.i-11d:before, &.i-11n:before {
-    content: "&";
-  }
-  &.i-13d:before, &.i-13n:before {
-    content: "#";
-  }
-  &.i-50d:before, &.i-50n:before {
-    content: "M"
-  }
-
-  &.i-thunder:before {
-    content: '6'
-  }
-  &.i-thunderstorm:before {
-    content: '&'
-  }
-  &.i-drizzle:before {
-    content: '7'
-  }
-  &.i-rain:before {
-    content: '8'
-  }
-  &.i-flake:before {
-    content: '"'
-  }
-  &.i-snow:before {
-    content: '#'
-  }
-  &.i-mist:before {
-    content: 'M'
-  }
-  &.i-haze:before {
-    content: 'E'
-  }
-  &.i-whirls:before, &.i-wind:before {
-    content: 'F'
-  }
-  &.i-clear-d:before {
-    content: '1'
-  }
-  &.i-clear-n:before {
-    content: '2'
-  }
-  &.i-cloud-d:before {
-    content: '3'
-  }
-  &.i-cloud-n:before {
-    content: '4'
-  }
-  &.i-cloudy:before {
-    content: '%'
-  }
-  &.i-hail:before {
-    content: '$'
-  }
-  &.i-cold:before {
-    content: 'G'
-  }
-  &.i-hot:before {
-    content: "'"
-  }
+    &.i-thunder:before {
+        content: '6';
+    }
+    &.i-thunderstorm:before {
+        content: '&';
+    }
+    &.i-drizzle:before {
+        content: '7';
+    }
+    &.i-rain:before {
+        content: '8';
+    }
+    &.i-flake:before {
+        content: '"';
+    }
+    &.i-snow:before {
+        content: '#';
+    }
+    &.i-mist:before {
+        content: 'M';
+    }
+    &.i-haze:before {
+        content: 'E';
+    }
+    &.i-whirls:before,
+    &.i-wind:before {
+        content: 'F';
+    }
+    &.i-clear-d:before {
+        content: '1';
+    }
+    &.i-clear-n:before {
+        content: '2';
+    }
+    &.i-cloud-d:before {
+        content: '3';
+    }
+    &.i-cloud-n:before {
+        content: '4';
+    }
+    &.i-cloudy:before {
+        content: '%';
+    }
+    &.i-hail:before {
+        content: '$';
+    }
+    &.i-cold:before {
+        content: 'G';
+    }
+    &.i-hot:before {
+        content: "'";
+    }
 }

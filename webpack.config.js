@@ -5,12 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
-    entry: [
-        './src/js/app.js',
-        './src/styles/app.scss'
-    ],
+    entry: ['./src/js/app.js', './src/styles/app.scss'],
 
-    output:{
+    output: {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js'
     },
@@ -52,7 +49,10 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             outputPath: (url, resourcePath, context) => {
-                                return path.relative(context + '/src', resourcePath);
+                                return path.relative(
+                                    context + '/src',
+                                    resourcePath
+                                );
                             }
                         }
                     }
@@ -82,12 +82,14 @@ module.exports = {
     ]
 };
 
-if(process.env.NODE_ENV === 'distribution'){
+if (process.env.NODE_ENV === 'distribution') {
     module.exports.mode = 'production';
-    module.exports.plugins.push(new Dotenv({
-        path: './.env.example',
-        safe: true
-    }));
+    module.exports.plugins.push(
+        new Dotenv({
+            path: './.env.example',
+            safe: true
+        })
+    );
     module.exports.plugins.push(new StylelintPlugin());
 
     module.exports.module.rules.push({

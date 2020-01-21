@@ -10,10 +10,7 @@ const intialize = () => {
 
     Time.initialize();
 
-    Weather.initialize(
-        Variables.weather_api_key,
-        Variables.default_city
-    );
+    Weather.initialize(Variables.weather_api_key, Variables.default_city);
 };
 
 document.addEventListener('DOMContentLoaded', intialize);
