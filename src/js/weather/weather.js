@@ -11,7 +11,7 @@ const { delay, toTitleCase } = Utilities;
 
 const DEFAULT_CYCLE_DURATION = 300000;
 
-function updateWeatherInformation(current){
+function updateWeatherInformation(current) {
     const weatherSelector = document.getElementById('weather');
     const iconSelector = weatherSelector.querySelector('.icon');
 
@@ -24,7 +24,7 @@ function updateWeatherInformation(current){
 
     weatherSelector.querySelector('.temp').innerHTML = temperature;
 
-    if(iconSelector.className.match(iconRegex)){
+    if (iconSelector.className.match(iconRegex)) {
         iconSelector.className = iconSelector.className.replace(iconRegex, '');
     }
     iconSelector.classList.add(icon.iconClass);
@@ -33,17 +33,19 @@ function updateWeatherInformation(current){
 
     weatherSelector.querySelector('.description').innerHTML = weatherCond;
 
-    document.querySelector('title').innerHTML = `${temperature}° ${weatherCond}`;
+    document.querySelector(
+        'title'
+    ).innerHTML = `${temperature}° ${weatherCond}`;
 }
 
-function displayWeather(city, cycle_duration = DEFAULT_CYCLE_DURATION){
+function displayWeather(city, cycle_duration = DEFAULT_CYCLE_DURATION) {
     WeatherClient.getCurrent(city, updateWeatherInformation);
 
     delay(cycle_duration).then(() => displayWeather(city, cycle_duration));
 }
 
 const weather = {
-    initialize: function(weather_api_key, city){
+    initialize: function(weather_api_key, city) {
         WeatherClient.apiKey = weather_api_key;
 
         displayWeather(city);

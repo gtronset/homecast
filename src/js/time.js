@@ -5,12 +5,12 @@ function getFormattedTime(date = new Date()) {
 
     hours = hours % 12;
     hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0'+minutes : minutes;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
 
     return `${hours}:${minutes} ${ampm}`;
 }
 
-function displayTime(){
+function displayTime() {
     document.getElementById('clock').innerHTML = getFormattedTime();
     setTimeout(displayTime, 500);
 }
