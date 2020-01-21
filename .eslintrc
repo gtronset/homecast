@@ -3,6 +3,7 @@
         "browser": true,
         "es6": true
     },
+    "ignorePatterns": ["dist/**/*.js"],
     "extends": "eslint:recommended",
     "globals": {
         "Atomics": "readonly",
@@ -30,5 +31,11 @@
             "error",
             "always"
         ]
-    }
+    },
+    "overrides": [{
+        "files": ["./*.js"],
+        "env": {
+            "node": true
+        }
+    }]
 }
