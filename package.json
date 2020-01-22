@@ -20,6 +20,10 @@
         "type": "git",
         "url": "https://github.com/gtronset/homecast.git"
     },
+    "browserslist": [
+        "last 2 versions",
+        "ie >= 11"
+    ],
     "dependencies": {},
     "devDependencies": {
         "@babel/core": "^7.7.7",
