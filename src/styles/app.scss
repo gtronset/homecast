@@ -36,28 +36,35 @@ body {
     }
 }
 
+$adaptiveSize: calc(0.8em + 2vmin + 2vmax);
+
 .content {
     color: white;
     direction: ltr;
-    font-size: 2.5rem;
-    line-height: 3.5rem;
+
+    font-size: $adaptiveSize;
+    line-height: $adaptiveSize;
+
     opacity: 0.34;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
+    text-align: right;
+
     float: right;
-    bottom: 2rem;
-    margin-right: 2rem;
-    max-width: 60%;
+    right: 0;
+    bottom: 1em;
+    margin-right: 1em;
     position: absolute;
     z-index: 2;
-    right: 0;
-    text-align: right;
+
+    max-width: 60%;
+
     transition: opacity 1s;
 
     .weather,
     .image-description {
-        font-size: 1rem;
-        line-height: 1rem;
+        font-size: 0.5em;
+        line-height: 1em;
     }
 
     .weather {
@@ -86,68 +93,4 @@ figure {
 
 .hidden {
     opacity: 0 !important;
-}
-
-@media only screen and (min-width: 480px) {
-    .content {
-        bottom: 2.5rem;
-        margin-right: 2.5rem;
-
-        font-size: 3rem;
-        line-height: 4rem;
-
-        .weather,
-        .image-description {
-            font-size: 1.25rem;
-            line-height: 1.25rem;
-        }
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .content {
-        bottom: 3rem;
-        margin-right: 3rem;
-
-        font-size: 4rem;
-        line-height: 5rem;
-
-        .weather,
-        .image-description {
-            font-size: 1.75rem;
-            line-height: 2.5rem;
-        }
-    }
-}
-
-@media only screen and (min-width: 1800px) {
-    .content {
-        bottom: 4rem;
-        margin-right: 4rem;
-
-        font-size: 5rem;
-        line-height: 6rem;
-
-        .weather,
-        .image-description {
-            font-size: 2.75rem;
-            line-height: 3.5rem;
-        }
-    }
-}
-
-@media only screen and (min-width: 2560px) {
-    .content {
-        bottom: 6rem;
-        margin-right: 6rem;
-
-        font-size: 7rem;
-        line-height: 8rem;
-
-        .weather,
-        .image-description {
-            font-size: 3.5rem;
-            line-height: 4.5rem;
-        }
-    }
 }
