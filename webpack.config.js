@@ -3,6 +3,9 @@ const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const WebpackBar = require('webpackbar');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+    .BundleAnalyzerPlugin;
 
 module.exports = {
     entry: ['./src/js/app.js', './src/styles/app.scss'],
@@ -10,6 +13,11 @@ module.exports = {
     output: {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js'
+    },
+
+    devServer: {
+        noInfo: true,
+        stats: 'minimal'
     },
 
     mode: 'development',
@@ -72,6 +80,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new WebpackBar(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             minify: true
@@ -82,15 +91,17 @@ module.exports = {
     ]
 };
 
+let dotenvConfig = {};
+
 if (process.env.NODE_ENV === 'distribution') {
     module.exports.mode = 'production';
-    module.exports.plugins.push(
-        new Dotenv({
-            path: './.env.example',
-            safe: true
-        })
-    );
+
     module.exports.plugins.push(new StylelintPlugin());
+
+    dotenvConfig = {
+        path: './.env.example',
+        safe: true
+    };
 
     module.exports.module.rules.push({
         test: /\.jsx?$/,
@@ -99,9 +110,13 @@ if (process.env.NODE_ENV === 'distribution') {
         exclude: /node_modules/,
         options: {
             emitWarning: true,
-            configFile: './.eslintrc'
+            configFile: './.eslintrc.json'
         }
     });
-} else {
-    module.exports.plugins.push(new Dotenv());
 }
+
+if (process.env.NODE_ENV === 'analyze') {
+    module.exports.plugins.push(new BundleAnalyzerPlugin());
+}
+
+module.exports.plugins.push(new Dotenv(dotenvConfig));
