@@ -1,10 +1,7 @@
-/*global require*/
+import requireContext from 'require-context.macro';
+import importAll from './importall';
 
-function _importAll(r) {
-    return r.keys().map(r);
-}
-
-_importAll(require.context('../images/icons/', false, /\.(ico)$/));
+importAll(requireContext('../images/icons/', false, /\.(ico)$/));
 
 import Utilities from './utilities';
 const { hasProperty } = Utilities;

@@ -1,11 +1,8 @@
-/*global require*/
+import requireContext from 'require-context.macro';
+import importAll from '../importall';
 
-function _importAll(r) {
-    return r.keys().map(r);
-}
-
-const images = _importAll(
-    require.context(
+const images = importAll(
+    requireContext(
         '../../images/default_backgrounds/',
         false,
         /\.(png|jpe?g|svg)$/
@@ -13,7 +10,7 @@ const images = _importAll(
 );
 
 const default_backgrounds = images.map(function(img) {
-    return { url: img.default };
+    return { url: `./images/default_backgrounds/${img}` };
 });
 
 export default default_backgrounds;
