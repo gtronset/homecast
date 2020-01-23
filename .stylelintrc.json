@@ -3,5 +3,6 @@
         "stylelint-config-recommended",
         "stylelint-prettier/recommended"
     ],
+    "ignoreFiles": ["dist/**/*.css"],
     "rules": {}
 }

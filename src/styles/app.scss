@@ -4,6 +4,7 @@
 html {
     background-color: #000;
     height: 100%;
+    font-size: 100%;
 }
 
 body {
@@ -19,6 +20,10 @@ body {
     margin: 0;
     padding: 0;
 
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+
     &:after {
         content: '';
         position: absolute;
@@ -31,33 +36,39 @@ body {
     }
 }
 
+$adaptiveSize: calc(0.8em + 2vmin + 2vmax);
+
 .content {
     color: white;
     direction: ltr;
-    font: 300 48px 'Roboto', sans-serif;
+
+    font-size: $adaptiveSize;
+    line-height: $adaptiveSize;
+
     opacity: 0.34;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
-    bottom: 64px;
+    text-align: right;
+
     float: right;
-    margin-right: 64px;
-    max-width: 60%;
+    right: 0;
+    bottom: 1em;
+    margin-right: 1em;
     position: absolute;
     z-index: 2;
-    right: 0;
-    text-align: right;
+
+    max-width: 60%;
+
     transition: opacity 1s;
 
-    .weather {
-        font: 300 20px/2rem 'Roboto', sans-serif;
-
-        text-transform: capitalize;
+    .weather,
+    .image-description {
+        font-size: 0.5em;
+        line-height: 1em;
     }
 
-    .image-description {
-        font: 300 20px/1 'Roboto', sans-serif;
-        opacity: 1;
-        transition: opacity 1s;
+    .weather {
+        text-transform: capitalize;
     }
 }
 
