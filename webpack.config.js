@@ -70,15 +70,11 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(woff|woff2|ttf|otf|eot)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: 'fonts',
-                        },
-                    },
-                ],
+                test: /\.(woff|woff2|ttf|otf|eot)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[hash][ext][query]',
+                },
             },
         ],
     },
