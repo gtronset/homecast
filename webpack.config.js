@@ -16,9 +16,10 @@ module.exports = {
     },
 
     devServer: {
-        noInfo: true,
-        stats: 'minimal',
+        hot: true,
     },
+
+    stats: 'minimal',
 
     mode: 'development',
 
@@ -43,9 +44,6 @@ module.exports = {
                     'css-loader',
                     {
                         loader: 'postcss-loader',
-                        options: {
-                            plugins: () => [require('autoprefixer')()],
-                        },
                     },
                     {
                         loader: 'sass-loader',

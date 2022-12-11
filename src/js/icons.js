@@ -1,7 +1,6 @@
-import requireContext from 'require-context.macro';
 import importAll from './importall';
 
-importAll(requireContext('../images/icons/', false, /\.(ico)$/));
+importAll(require.context('../images/icons/', false, /\.(ico)$/));
 
 import Utilities from './utilities';
 const { hasProperty } = Utilities;

@@ -4,7 +4,7 @@
     "description": "Home pages inspired by the Google Cromecast home page.",
     "main": "index.js",
     "scripts": {
-        "start": "webpack-dev-server --mode development --hot",
+        "start": "webpack serve --mode development --hot",
         "build": "webpack --mode production",
         "dist": "NODE_ENV='distribution' webpack",
         "analyze": "NODE_ENV='analyze' webpack",
