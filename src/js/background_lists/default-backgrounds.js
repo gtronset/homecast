@@ -9,7 +9,7 @@ const images = importAll(
     )
 );
 
-const default_backgrounds = images.map(function(img) {
+const default_backgrounds = images.map(function (img) {
     return { url: `./images/default_backgrounds/${img}` };
 });
 

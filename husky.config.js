@@ -5,6 +5,6 @@ module.exports = {
         'pre-commit': 'lint-staged',
         'post-rebase': 'npm install',
         'post-checkout': `if [[ $HUSKY_GIT_PARAMS =~ 1$ ]]; then ${runNPMLock}; fi`,
-        'post-merge': runNPMLock
-    }
+        'post-merge': runNPMLock,
+    },
 };
