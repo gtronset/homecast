@@ -7,9 +7,11 @@ const { delay, toTitleCase } = Utilities;
 /*
     Set time-to-refresh at 5 minutes. Weather data in OWM's system is updated
     no more than one time every 10 minutes
+
+    Samples: https://samples.openweathermap.org
 */
 
-const DEFAULT_CYCLE_DURATION = 300000;
+const DEFAULT_CYCLE_DURATION = 5 * 60 * 100;
 
 function updateWeatherInformation(current) {
     const weatherSelector = document.getElementById('weather');
