@@ -16,7 +16,7 @@ function displayTime() {
 }
 
 const time = {
-    initialize: displayTime
+    initialize: displayTime,
 };
 
 export default time;

@@ -4,21 +4,22 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const WebpackBar = require('webpackbar');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-    .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin =
+    require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     entry: ['./src/js/app.js', './src/styles/app.scss'],
 
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
     },
 
     devServer: {
-        noInfo: true,
-        stats: 'minimal'
+        hot: true,
     },
+
+    stats: 'minimal',
 
     mode: 'development',
 
@@ -30,30 +31,27 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
+                        presets: ['@babel/preset-env'],
+                    },
+                },
             },
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
                     {
-                        loader: MiniCssExtractPlugin.loader
+                        loader: MiniCssExtractPlugin.loader,
                     },
                     'css-loader',
                     {
                         loader: 'postcss-loader',
-                        options: {
-                            plugins: () => [require('autoprefixer')()]
-                        }
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            implementation: require('sass')
-                        }
-                    }
-                ]
+                            implementation: require('sass'),
+                        },
+                    },
+                ],
             },
             {
                 test: /\.(png|jpe?g|gif|svg|ico)$/i,
@@ -66,39 +64,35 @@ module.exports = {
                                     context + '/src',
                                     resourcePath
                                 );
-                            }
-                        }
-                    }
-                ]
+                            },
+                        },
+                    },
+                ],
             },
             {
-                test: /\.(woff|woff2|ttf|otf|eot)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: 'fonts'
-                        }
-                    }
-                ]
-            }
-        ]
+                test: /\.(woff|woff2|ttf|otf|eot)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[hash][ext][query]',
+                },
+            },
+        ],
     },
     plugins: [
         new WebpackBar(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            minify: true
+            minify: true,
         }),
         new MiniCssExtractPlugin({
-            filename: 'styles.css'
-        })
-    ]
+            filename: 'styles.css',
+        }),
+    ],
 };
 
 let dotenvConfig = {};
 let minifyCssConfig = {
-    filename: 'styles.[chunkhash].css'
+    filename: 'styles.[chunkhash].css',
 };
 
 if (process.env.NODE_ENV === 'distribution') {
@@ -108,7 +102,7 @@ if (process.env.NODE_ENV === 'distribution') {
 
     dotenvConfig = {
         path: './.env.example',
-        safe: true
+        safe: true,
     };
 
     minifyCssConfig.filename = 'styles.css';
@@ -120,8 +114,8 @@ if (process.env.NODE_ENV === 'distribution') {
         exclude: /node_modules/,
         options: {
             emitWarning: true,
-            configFile: './.eslintrc.json'
-        }
+            configFile: './.eslintrc.json',
+        },
     });
 }
 

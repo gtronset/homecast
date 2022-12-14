@@ -45,7 +45,7 @@ function updateBackgroundImageInformation(backgroundItem, callback) {
     const descriptionSelector = document.getElementById('image-description');
 
     descriptionSelector.classList.add('hidden');
-    setTimeout(function() {
+    setTimeout(function () {
         descriptionSelector.textContent = imgAuthor;
         descriptionSelector.classList.remove('hidden');
     }, 1000);
@@ -66,7 +66,7 @@ function setBackgroundImage(backgroundList, originalList) {
 
     return new Promise((resolve, reject) => {
         var img = new Image();
-        img.addEventListener('load', function() {
+        img.addEventListener('load', function () {
             if (
                 ('naturalHeight' in this &&
                     this.naturalHeight + this.naturalWidth === 0) ||
@@ -81,14 +81,14 @@ function setBackgroundImage(backgroundList, originalList) {
             updateBackgroundImageInformation(backgroundItem, () =>
                 resolve({
                     originalList: originalList,
-                    updatedBackgroundList: updatedBackgroundList
+                    updatedBackgroundList: updatedBackgroundList,
                 })
             );
         });
         img.addEventListener('error', () =>
             reject({
                 originalList: originalList,
-                updatedBackgroundList: updatedBackgroundList
+                updatedBackgroundList: updatedBackgroundList,
             })
         );
 
@@ -96,22 +96,22 @@ function setBackgroundImage(backgroundList, originalList) {
             img.src = backgroundItem.url;
         } else {
             fetch(backgroundItem.url)
-                .then(res => {
+                .then((res) => {
                     if (res.ok) {
-                        res.blob().then(b => {
+                        res.blob().then((b) => {
                             img.src = URL.createObjectURL(b);
                         });
                     } else {
                         reject({
                             originalList: originalList,
-                            updatedBackgroundList: updatedBackgroundList
+                            updatedBackgroundList: updatedBackgroundList,
                         });
                     }
                 })
                 .catch(() =>
                     reject({
                         originalList: originalList,
-                        updatedBackgroundList: updatedBackgroundList
+                        updatedBackgroundList: updatedBackgroundList,
                     })
                 );
         }
@@ -119,7 +119,7 @@ function setBackgroundImage(backgroundList, originalList) {
 }
 
 function filterBackgroundList(backgroundList, backgroundItem) {
-    return backgroundList.filter(item => item !== backgroundItem);
+    return backgroundList.filter((item) => item !== backgroundItem);
 }
 
 function coalesceBackgroundList(originalList, backgroundList = []) {
@@ -167,7 +167,7 @@ function cycleBackgrounds(
 
 const backgrounds = {
     getList: getBackgroundList,
-    initialize: cycleBackgrounds
+    initialize: cycleBackgrounds,
 };
 
 export default backgrounds;

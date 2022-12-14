@@ -45,11 +45,11 @@ function displayWeather(city, cycle_duration = DEFAULT_CYCLE_DURATION) {
 }
 
 const weather = {
-    initialize: function(weather_api_key, city) {
+    initialize: function (weather_api_key, city) {
         WeatherClient.apiKey = weather_api_key;
 
         displayWeather(city);
-    }
+    },
 };
 
 export default weather;

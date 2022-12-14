@@ -4,11 +4,11 @@ module.exports = {
             '@babel/preset-env',
             {
                 targets: {
-                    node: 'current'
+                    node: 'current',
                 },
-                useBuiltIns: 'usage'
-            }
-        ]
+                useBuiltIns: 'usage',
+            },
+        ],
     ],
-    plugins: ['macros', 'babel-plugin-rewire']
+    plugins: ['macros', 'babel-plugin-rewire'],
 };
