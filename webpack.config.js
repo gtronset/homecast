@@ -1,5 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
@@ -62,7 +63,7 @@ module.exports = {
                             outputPath: (url, resourcePath, context) => {
                                 return path.relative(
                                     context + '/src',
-                                    resourcePath
+                                    resourcePath,
                                 );
                             },
                         },
@@ -100,23 +101,25 @@ if (process.env.NODE_ENV === 'distribution') {
 
     module.exports.plugins.push(new StylelintPlugin());
 
+    module.exports.plugins.push(new ESLintPlugin());
+
     dotenvConfig = {
-        path: './.env.example',
+        path: './.env',
         safe: true,
     };
 
     minifyCssConfig.filename = 'styles.css';
 
-    module.exports.module.rules.push({
-        test: /\.jsx?$/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        exclude: /node_modules/,
-        options: {
-            emitWarning: true,
-            configFile: './.eslintrc.json',
-        },
-    });
+    // module.exports.module.rules.push({
+    //     test: /\.jsx?$/,
+    //     enforce: 'pre',
+    //     loader: 'eslint-loader',
+    //     exclude: /node_modules/,
+    //     options: {
+    //         emitWarning: true,
+    //         configFile: './.eslintrc.json',
+    //     },
+    // });
 }
 
 if (process.env.NODE_ENV === 'analyze') {

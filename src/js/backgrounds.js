@@ -61,7 +61,7 @@ function setBackgroundImage(backgroundList, originalList) {
     const filteredList = filterBackgroundList(backgroundList, backgroundItem);
     const updatedBackgroundList = coalesceBackgroundList(
         originalList,
-        filteredList
+        filteredList,
     );
 
     return new Promise((resolve, reject) => {
@@ -82,14 +82,14 @@ function setBackgroundImage(backgroundList, originalList) {
                 resolve({
                     originalList: originalList,
                     updatedBackgroundList: updatedBackgroundList,
-                })
+                }),
             );
         });
         img.addEventListener('error', () =>
             reject({
                 originalList: originalList,
                 updatedBackgroundList: updatedBackgroundList,
-            })
+            }),
         );
 
         if (is_file_protocol) {
@@ -112,7 +112,7 @@ function setBackgroundImage(backgroundList, originalList) {
                     reject({
                         originalList: originalList,
                         updatedBackgroundList: updatedBackgroundList,
-                    })
+                    }),
                 );
         }
     });
@@ -142,7 +142,7 @@ function selectBackgroundItem(backgroundList, random = Math.random()) {
 function cycleBackgrounds(
     backgroundList,
     cycle_duration,
-    originalList = clone(backgroundList)
+    originalList = clone(backgroundList),
 ) {
     setBackgroundImage(backgroundList, originalList)
         .then(({ originalList, updatedBackgroundList }) =>
@@ -150,18 +150,18 @@ function cycleBackgrounds(
                 cycleBackgrounds(
                     updatedBackgroundList,
                     cycle_duration,
-                    originalList
-                )
-            )
+                    originalList,
+                ),
+            ),
         )
         .catch(({ originalList, updatedBackgroundList }) =>
             delay(RETRY_DURATION).then(() =>
                 cycleBackgrounds(
                     updatedBackgroundList,
                     cycle_duration,
-                    originalList
-                )
-            )
+                    originalList,
+                ),
+            ),
         );
 }
 
