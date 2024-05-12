@@ -1,6 +1,7 @@
 {
     "extends": [
         "stylelint-config-recommended",
+        "stylelint-config-standard-scss",
         "stylelint-prettier/recommended"
     ],
     "ignoreFiles": ["dist/**/*.css"],

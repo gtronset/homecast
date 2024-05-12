@@ -1,8 +1,8 @@
 i.icon {
-    &[class^='i-']:before,
-    &[class*=' i-']:before {
+    &[class^='i-']::before,
+    &[class*=' i-']::before {
         /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-        font-family: 'MeteoconsRegular';
+        font-family: MeteoconsRegular;
         text-decoration: inherit;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -11,98 +11,123 @@ i.icon {
         vertical-align: baseline;
     }
 
-    &.i-01d:before {
+    &.i-01d::before {
         content: '1';
     }
-    &.i-01n:before {
+
+    &.i-01n::before {
         content: '2';
     }
-    &.i-02d:before {
+
+    &.i-02d::before {
         content: '3';
     }
-    &.i-02n:before {
+
+    &.i-02n::before {
         content: '4';
     }
 
-    &.i-03d:before,
-    &.i-03n:before {
+    &.i-03d::before,
+    &.i-03n::before {
         content: '5';
     }
-    &.i-04d:before,
-    &.i-04n:before {
+
+    &.i-04d::before,
+    &.i-04n::before {
         content: '%';
     }
-    &.i-09d:before,
-    &.i-09n:before {
+
+    &.i-09d::before,
+    &.i-09n::before {
         content: '8';
     }
-    &.i-10d:before,
-    &.i-10n:before {
+
+    &.i-10d::before,
+    &.i-10n::before {
         content: '7';
     }
-    &.i-11d:before,
-    &.i-11n:before {
+
+    &.i-11d::before,
+    &.i-11n::before {
         content: '&';
     }
-    &.i-13d:before,
-    &.i-13n:before {
+
+    &.i-13d::before,
+    &.i-13n::before {
         content: '#';
     }
-    &.i-50d:before,
-    &.i-50n:before {
+
+    &.i-50d::before,
+    &.i-50n::before {
         content: 'M';
     }
 
-    &.i-thunder:before {
+    &.i-thunder::before {
         content: '6';
     }
-    &.i-thunderstorm:before {
+
+    &.i-thunderstorm::before {
         content: '&';
     }
-    &.i-drizzle:before {
+
+    &.i-drizzle::before {
         content: '7';
     }
-    &.i-rain:before {
+
+    &.i-rain::before {
         content: '8';
     }
-    &.i-flake:before {
+
+    &.i-flake::before {
         content: '"';
     }
-    &.i-snow:before {
+
+    &.i-snow::before {
         content: '#';
     }
-    &.i-mist:before {
+
+    &.i-mist::before {
         content: 'M';
     }
-    &.i-haze:before {
+
+    &.i-haze::before {
         content: 'E';
     }
-    &.i-whirls:before,
-    &.i-wind:before {
+
+    &.i-whirls::before,
+    &.i-wind::before {
         content: 'F';
     }
-    &.i-clear-d:before {
+
+    &.i-clear-d::before {
         content: '1';
     }
-    &.i-clear-n:before {
+
+    &.i-clear-n::before {
         content: '2';
     }
-    &.i-cloud-d:before {
+
+    &.i-cloud-d::before {
         content: '3';
     }
-    &.i-cloud-n:before {
+
+    &.i-cloud-n::before {
         content: '4';
     }
-    &.i-cloudy:before {
+
+    &.i-cloudy::before {
         content: '%';
     }
-    &.i-hail:before {
+
+    &.i-hail::before {
         content: '$';
     }
-    &.i-cold:before {
+
+    &.i-cold::before {
         content: 'G';
     }
-    &.i-hot:before {
+
+    &.i-hot::before {
         content: "'";
     }
 }
