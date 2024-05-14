@@ -113,7 +113,7 @@ WeatherClient.Forecast.prototype.startAt = function () {
     return new Date(
         minBy(this.data.list, function (d) {
             return d.dt;
-        }).dt * 1000,
+        }).dt * 1000
     );
 };
 
@@ -121,7 +121,7 @@ WeatherClient.Forecast.prototype.endAt = function () {
     return new Date(
         maxBy(this.data.list, function (d) {
             return d.dt;
-        }).dt * 1000,
+        }).dt * 1000
     );
 };
 

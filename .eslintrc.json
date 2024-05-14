@@ -19,7 +19,14 @@
         "indent": ["error", 4, { "SwitchCase": 1 }],
         "linebreak-style": ["error", "unix"],
         "quotes": ["error", "single"],
-        "semi": ["error", "always"]
+        "semi": ["error", "always"],
+        "comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "never",
+            "exports": "never",
+            "functions": "never"
+        }]
     },
     "overrides": [
         {

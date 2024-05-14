@@ -63,7 +63,7 @@ module.exports = {
                             outputPath: (url, resourcePath, context) => {
                                 return path.relative(
                                     context + '/src',
-                                    resourcePath,
+                                    resourcePath
                                 );
                             },
                         },
