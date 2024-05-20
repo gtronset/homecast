@@ -56,19 +56,18 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg|ico)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: (url, resourcePath, context) => {
-                                return path.relative(
-                                    context + '/src',
-                                    resourcePath
-                                );
-                            },
-                        },
-                    },
-                ],
+                type: 'asset/resource',
+                generator: {
+                    filename: '[name][ext][query]',
+                    outputPath: (pathData) => {
+                        const filepath = path
+                            .dirname(pathData.filename)
+                            .split("/")
+                            .slice(1)
+                            .join("/");
+                        return `${filepath}`;
+                    }
+                },
             },
             {
                 test: /\.(woff|woff2|ttf|otf|eot)$/i,
