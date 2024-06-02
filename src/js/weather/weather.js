@@ -33,9 +33,8 @@ function updateWeatherInformation(current) {
 
     weatherSelector.querySelector('.description').innerHTML = weatherCond;
 
-    document.querySelector(
-        'title'
-    ).innerHTML = `${temperature}° ${weatherCond}`;
+    document.querySelector('title').innerHTML =
+        `${temperature}° ${weatherCond}`;
 }
 
 function displayWeather(city, cycle_duration = DEFAULT_CYCLE_DURATION) {

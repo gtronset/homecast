@@ -1,5 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
@@ -55,19 +56,18 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg|ico)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: (url, resourcePath, context) => {
-                                return path.relative(
-                                    context + '/src',
-                                    resourcePath
-                                );
-                            },
-                        },
+                type: 'asset/resource',
+                generator: {
+                    filename: '[name][ext][query]',
+                    outputPath: (pathData) => {
+                        const filepath = path
+                            .dirname(pathData.filename)
+                            .split('/')
+                            .slice(1)
+                            .join('/');
+                        return `${filepath}`;
                     },
-                ],
+                },
             },
             {
                 test: /\.(woff|woff2|ttf|otf|eot)$/i,
@@ -100,23 +100,25 @@ if (process.env.NODE_ENV === 'distribution') {
 
     module.exports.plugins.push(new StylelintPlugin());
 
+    module.exports.plugins.push(new ESLintPlugin());
+
     dotenvConfig = {
-        path: './.env.example',
+        path: './.env',
         safe: true,
     };
 
     minifyCssConfig.filename = 'styles.css';
 
-    module.exports.module.rules.push({
-        test: /\.jsx?$/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        exclude: /node_modules/,
-        options: {
-            emitWarning: true,
-            configFile: './.eslintrc.json',
-        },
-    });
+    // module.exports.module.rules.push({
+    //     test: /\.jsx?$/,
+    //     enforce: 'pre',
+    //     loader: 'eslint-loader',
+    //     exclude: /node_modules/,
+    //     options: {
+    //         emitWarning: true,
+    //         configFile: './.eslintrc.json',
+    //     },
+    // });
 }
 
 if (process.env.NODE_ENV === 'analyze') {
