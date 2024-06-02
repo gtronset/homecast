@@ -164,7 +164,7 @@ const iconList = {
 /* Icon Handling */
 
 function changeFavicon(src) {
-    document.querySelector('link[rel="shortcut icon"]').href = src;
+    document.querySelector('link[rel="icon"]').href = src;
 }
 
 function getIcon(iconObj) {
