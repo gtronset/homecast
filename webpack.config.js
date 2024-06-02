@@ -66,7 +66,7 @@ module.exports = {
                             .slice(1)
                             .join('/');
                         return `${filepath}`;
-                    }
+                    },
                 },
             },
             {
