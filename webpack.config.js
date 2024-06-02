@@ -62,9 +62,9 @@ module.exports = {
                     outputPath: (pathData) => {
                         const filepath = path
                             .dirname(pathData.filename)
-                            .split("/")
+                            .split('/')
                             .slice(1)
-                            .join("/");
+                            .join('/');
                         return `${filepath}`;
                     }
                 },
