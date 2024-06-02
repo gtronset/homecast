@@ -12,7 +12,6 @@ const { delay, toTitleCase } = Utilities;
 const DEFAULT_CYCLE_DURATION = 300000;
 
 function updateWeatherInformation(current) {
-    console.log(current)
     const weatherSelector = document.getElementById('weather');
     const iconSelector = weatherSelector.querySelector('.icon');
 
