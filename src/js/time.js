@@ -11,7 +11,13 @@ function getFormattedTime(date = new Date()) {
 }
 
 function displayTime() {
-    document.getElementById('clock').innerHTML = getFormattedTime();
+    let clockElem = document.getElementById('clock');
+    let newTime = getFormattedTime();
+
+    if(clockElem.innerHTML !== newTime){
+        document.getElementById('clock').innerHTML = getFormattedTime();
+    }
+    
     setTimeout(displayTime, 500);
 }
 
