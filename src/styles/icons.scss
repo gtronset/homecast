@@ -1,4 +1,6 @@
 i.icon {
+    font-style: normal;
+
     &[class^='i-']::before,
     &[class*=' i-']::before {
         /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */

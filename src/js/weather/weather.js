@@ -29,12 +29,12 @@ function updateWeatherInformation(current) {
     }
     iconSelector.classList.add(icon.iconClass);
 
-    Icons.changeFavicon(`images/icons/${icon.iconName}.ico`);
+    Icons.changeFavicon(`images/icons/${icon.iconName}.svg`);
 
     weatherSelector.querySelector('.description').innerHTML = weatherCond;
 
     document.querySelector('title').innerHTML =
-        `${temperature}° ${weatherCond}`;
+        `${temperature}° ${weatherCond} in ${current.data.name}`;
 }
 
 function displayWeather(city, cycle_duration = DEFAULT_CYCLE_DURATION) {
