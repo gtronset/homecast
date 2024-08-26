@@ -25,8 +25,8 @@
         "ie >= 11"
     ],
     "devDependencies": {
-        "@babel/core": "^7.24.6",
-        "@babel/preset-env": "^7.24.6",
+        "@babel/core": "^7.25.2",
+        "@babel/preset-env": "^7.25.4",
         "autoprefixer": "^10.4.19",
         "babel-jest": "^29.7.0",
         "babel-loader": "^9.1.3",
